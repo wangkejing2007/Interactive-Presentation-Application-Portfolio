@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第二階段備審準備作戰圖</title>
+  <style>
+    :root {
+      --ink: #20242a;
+      --muted: #5f6873;
+      --paper: #f7f4ec;
+      --white: #ffffff;
+      --teal: #0e7c7b;
+      --teal2: #cfe7e3;
+      --coral: #e45b4f;
+      --coral2: #f8d3ce;
+      --gold: #e4a72f;
+      --gold2: #f5e4b8;
+      --blue: #315c9a;
+      --blue2: #d8e3f3;
+      --green: #4f8d5b;
+      --green2: #ddebd6;
+      --line: #d8d3c8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #e9e4d9;
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
+      line-height: 1.35;
+    }
+    .page {
+      width: min(1180px, calc(100vw - 28px));
+      margin: 28px auto;
+    }
+    .slide {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(32, 36, 42, .1);
+      box-shadow: 0 18px 50px rgba(32, 36, 42, .14);
+      margin: 0 0 28px;
+      padding: 4.6% 5.2%;
+    }
+    .slide.dark { background: var(--ink); color: var(--white); }
+    .slide h1,
+    .slide h2,
+    .slide h3,
+    .slide p { margin: 0; }
+    .slide-title {
+      font-size: clamp(24px, 3vw, 42px);
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1.1;
+    }
+    .slide-subtitle {
+      margin-top: .65rem;
+      color: var(--muted);
+      font-size: clamp(12px, 1.15vw, 17px);
+    }
+    .rule {
+      height: 1px;
+      width: 100%;
+      margin-top: 1.1rem;
+      background: var(--line);
+    }
+    .footer {
+      position: absolute;
+      left: 5.2%;
+      right: 5.2%;
+      bottom: 3.2%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: #7a776e;
+      font-size: clamp(9px, .78vw, 12px);
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 54px;
+      border-radius: 999px;
+      padding: .24rem .56rem;
+      font-weight: 800;
+      font-size: clamp(10px, .9vw, 13px);
+    }
+    .circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(34px, 3.8vw, 54px);
+      height: clamp(34px, 3.8vw, 54px);
+      border-radius: 50%;
+      color: var(--white);
+      font-weight: 800;
+      font-size: clamp(15px, 1.4vw, 21px);
+    }
+    .cover {
+      background: linear-gradient(90deg, var(--teal) 0 59.5%, var(--gold) 59.5% 100%);
+      color: var(--white);
+      padding: 0;
+    }
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: -8% 15% -8% 51%;
+      border-left: 5px solid rgba(247, 244, 236, .75);
+      border-radius: 50%;
+      transform: rotate(4deg);
+    }
+    .cover-text {
+      position: absolute;
+      left: 6.3%;
+      top: 17%;
+      width: 50%;
+    }
+    .cover h1 {
+      white-space: pre-line;
+      font-size: clamp(42px, 6.1vw, 78px);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+    .cover .support {
+      margin-top: 1.25rem;
+      color: #eaf4f2;
+      font-size: clamp(15px, 1.5vw, 22px);
+    }
+    .cover .core {
+      margin-top: 4.6rem;
+      max-width: 650px;
+      font-size: clamp(17px, 1.8vw, 26px);
+      font-weight: 800;
+    }
+    .cover-list {
+      position: absolute;
+      right: 8.4%;
+      top: 28%;
+      width: 28%;
+      display: grid;
+      gap: 1rem;
+    }
+    .cover-list div {
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: .68rem 1.2rem;
+      font-size: clamp(18px, 1.9vw, 28px);
+      font-weight: 800;
+    }
+    .cover-list div:nth-child(2) {
+      color: var(--coral);
+      background: #fff8e4;
+    }
+    .chevrons {
+      position: absolute;
+      right: 9.6%;
+      top: 13.5%;
+      display: flex;
+      gap: .24rem;
+    }
+    .chev {
+      width: clamp(56px, 7vw, 104px);
+      height: clamp(24px, 3vw, 44px);
+      clip-path: polygon(0 0, 75% 0, 100% 50%, 75% 100%, 0 100%, 25% 50%);
+      background: var(--paper);
+    }
+    .chev:nth-child(2) { background: var(--coral); }
+    .chev:nth-child(3) { background: var(--blue); }
+    .cover-note {
+      position: absolute;
+      left: 6.4%;
+      bottom: 8.6%;
+      color: #d7ece8;
+      font-size: clamp(10px, 1vw, 14px);
+    }
+    .flow {
+      margin-top: 7.8%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.3rem;
+      align-items: start;
+    }
+    .flow-step {
+      position: relative;
+      text-align: center;
+    }
+    .flow-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 23px;
+      left: calc(50% + 38px);
+      width: calc(100% - 48px);
+      height: 12px;
+      background: var(--line);
+      clip-path: polygon(0 20%, 82% 20%, 82% 0, 100% 50%, 82% 100%, 82% 80%, 0 80%);
+    }
+    .flow-step .card {
+      margin-top: 1.6rem;
+      min-height: 110px;
+      padding: .85rem .55rem;
+    }
+    .flow-step h3 {
+      font-size: clamp(16px, 1.6vw, 24px);
+      margin-bottom: .45rem;
+    }
+    .flow-step p {
+      color: var(--muted);
+      font-size: clamp(11px, 1vw, 15px);
+    }
+    .strategy {
+      position: absolute;
+      left: 5.8%;
+      right: 5.8%;
+      bottom: 16%;
+      display: grid;
+      grid-template-columns: 1.2fr 8fr;
+      align-items: center;
+      gap: 1rem;
+      background: var(--teal2);
+      padding: .9rem 1.2rem;
+    }
+    .strategy strong {
+      color: var(--teal);
+      font-size: clamp(14px, 1.3vw, 20px);
+    }
+    .strategy span {
+      font-weight: 800;
+      font-size: clamp(15px, 1.45vw, 24px);
+    }
+    .principles {
+      margin-top: 7%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.15rem;
+    }
+    .principle {
+      min-height: 148px;
+      border-left: 10px solid;
+    }
+    .principle:nth-child(-n+3) { grid-column: span 2; }
+    .principle:nth-child(n+4) { grid-column: span 3; }
+    .principle h3 {
+      margin-top: .7rem;
+      font-size: clamp(17px, 1.7vw, 25px);
+    }
+    .principle p {
+      margin-top: .48rem;
+      color: var(--muted);
+      font-size: clamp(11px, 1.05vw, 16px);
+    }
+    .focus-line,
+    .bottom-line {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 10.7%;
+      text-align: center;
+      color: var(--teal);
+      font-weight: 900;
+      font-size: clamp(16px, 1.65vw, 25px);
+    }
+    .filters {
+      margin-top: 7.4%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.45rem;
+    }
+    .filter {
+      text-align: center;
+      min-height: 190px;
+      border-color: currentColor;
+    }
+    .funnel {
+      width: clamp(56px, 6vw, 86px);
+      height: clamp(46px, 5vw, 72px);
+      margin: .15rem auto .85rem;
+      background: currentColor;
+      clip-path: polygon(0 0, 100% 0, 64% 45%, 64% 100%, 36% 100%, 36% 45%);
+    }
+    .filter h3 {
+      font-size: clamp(22px, 2.25vw, 36px);
+    }
+    .filter p {
+      margin-top: .5rem;
+      color: var(--muted);
+      font-size: clamp(12px, 1.08vw, 16px);
+    }
+    .mini-timeline {
+      position: absolute;
+      left: 11%;
+      right: 11%;
+      bottom: 23%;
+      height: 58px;
+      border-top: 3px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      text-align: center;
+    }
+    .mini-timeline div {
+      position: relative;
+      padding-top: 26px;
+      font-size: clamp(11px, 1vw, 15px);
+      font-weight: 800;
+    }
+    .mini-timeline div::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: var(--dot);
+      border: 2px solid var(--paper);
+    }
+    .table-list {
+      margin-top: 5.4%;
+      display: grid;
+      gap: .72rem;
+    }
+    .table-row {
+      display: grid;
+      grid-template-columns: 1fr 2.1fr 5fr;
+      align-items: center;
+      gap: 1rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: .55rem .85rem;
+    }
+    .table-row:nth-child(even) { background: #fffdf8; }
+    .table-row strong {
+      font-size: clamp(16px, 1.45vw, 23px);
+    }
+    .table-row span:last-child {
+      color: var(--muted);
+      font-size: clamp(13px, 1.2vw, 18px);
+    }
+    .brace-note {
+      position: absolute;
+      right: 5.2%;
+      top: 52%;
+      color: var(--coral);
+      font-size: clamp(14px, 1.2vw, 18px);
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .chain {
+      margin-top: 8%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.2rem;
+      align-items: start;
+      text-align: center;
+    }
+    .hex {
+      position: relative;
+      width: min(136px, 11vw);
+      height: min(112px, 9vw);
+      margin: 0 auto;
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: clamp(18px, 1.8vw, 28px);
+      font-weight: 900;
+      clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+      background: var(--hex);
+    }
+    .chain-item:not(:last-child) .hex::after {
+      content: "";
+      position: absolute;
+      left: 116%;
+      top: 45%;
+      width: 48px;
+      height: 12px;
+      background: var(--line);
+      clip-path: polygon(0 20%, 82% 20%, 82% 0, 100% 50%, 82% 100%, 82% 80%, 0 80%);
+    }
+    .chain p {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: clamp(12px, 1.05vw, 16px);
+    }
+    .sentence {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 17%;
+      display: grid;
+      grid-template-columns: 1.2fr 5.7fr;
+      gap: 1rem;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: clamp(14px, 1.35vw, 20px);
+      font-weight: 800;
+    }
+    .sentence strong { color: var(--teal); }
+    .matrix {
+      position: absolute;
+      left: 17%;
+      right: 17%;
+      top: 24%;
+      bottom: 17%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .matrix::before {
+      content: "與學系關聯高";
+      position: absolute;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: clamp(11px, 1vw, 15px);
+    }
+    .matrix::after {
+      content: "與學系關聯低";
+      position: absolute;
+      bottom: -34px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: clamp(11px, 1vw, 15px);
+    }
+    .axis-left,
+    .axis-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-size: clamp(11px, 1vw, 15px);
+      font-weight: 800;
+    }
+    .axis-left { left: 5%; color: var(--teal); }
+    .axis-right { right: 5%; color: var(--coral); transform: translateY(-50%) rotate(90deg); }
+    .quad {
+      margin: 1.1rem;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: .8rem;
+    }
+    .quad h3 {
+      font-size: clamp(18px, 1.8vw, 28px);
+      margin-bottom: .45rem;
+    }
+    .quad p {
+      font-size: clamp(12px, 1.05vw, 16px);
+    }
+    .structure-grid {
+      margin-top: 5.8%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.45rem;
+    }
+    .structure {
+      min-height: 360px;
+      text-align: center;
+      border-color: currentColor;
+    }
+    .structure h3 {
+      color: currentColor;
+      font-size: clamp(24px, 2.2vw, 36px);
+    }
+    .structure p {
+      white-space: pre-line;
+      margin-top: .75rem;
+      font-size: clamp(14px, 1.3vw, 20px);
+    }
+    .fake-lines {
+      width: 72%;
+      margin: 2.2rem auto 1.5rem;
+      display: grid;
+      gap: .7rem;
+    }
+    .fake-lines span {
+      height: 13px;
+      background: #ece8de;
+    }
+    .fake-lines span:first-child { background: currentColor; }
+    .best {
+      color: var(--muted);
+      font-size: clamp(11px, .98vw, 15px);
+      font-weight: 800;
+    }
+    .blocks {
+      margin-top: 6.2%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.4rem 1.8rem;
+    }
+    .block-card {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: .9rem;
+      align-items: center;
+      min-height: 126px;
+      border-color: currentColor;
+    }
+    .block-card h3 {
+      color: currentColor;
+      font-size: clamp(19px, 1.8vw, 28px);
+    }
+    .block-card p {
+      margin-top: .42rem;
+      color: var(--muted);
+      font-size: clamp(12px, 1.15vw, 17px);
+    }
+    .qa-grid {
+      margin-top: 5.5%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .qa {
+      min-height: 142px;
+    }
+    .qa:nth-child(even) { background: #fffdf8; }
+    .qa h3 {
+      display: inline-block;
+      margin-left: .55rem;
+      font-size: clamp(17px, 1.6vw, 25px);
+    }
+    .qa p {
+      margin-top: 1.05rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: clamp(12px, 1.08vw, 16px);
+    }
+    .check-list {
+      margin-top: 5%;
+      display: grid;
+      gap: .82rem;
+    }
+    .check-row {
+      display: grid;
+      grid-template-columns: 42px 82px 1fr;
+      align-items: center;
+      gap: .9rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: .54rem .9rem;
+    }
+    .check-row:nth-child(even) { background: #fffdf8; }
+    .ok {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 8px;
+      font-weight: 900;
+    }
+    .check-row strong {
+      font-size: clamp(15px, 1.35vw, 21px);
+    }
+    .check-row span:last-child {
+      font-size: clamp(13px, 1.22vw, 19px);
+    }
+    .dark .gold-rule {
+      height: 5px;
+      width: 84%;
+      background: var(--gold);
+      margin-bottom: 2.6rem;
+    }
+    .dark h2 {
+      color: var(--gold);
+      font-size: clamp(28px, 3vw, 46px);
+    }
+    .dark .big {
+      margin-top: 1.8rem;
+      white-space: pre-line;
+      font-size: clamp(34px, 4.5vw, 62px);
+      font-weight: 900;
+      line-height: 1.22;
+    }
+    .dark ul {
+      list-style: none;
+      padding: 0;
+      margin: 4.2rem 0 0;
+      display: grid;
+      gap: .72rem;
+      color: #eae7de;
+      font-size: clamp(15px, 1.45vw, 22px);
+    }
+    .dark li {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .dark li::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--dot);
+      flex: 0 0 auto;
+    }
+    .end-mark {
+      position: absolute;
+      right: 9%;
+      bottom: 9%;
+      color: var(--gold);
+      font-weight: 900;
+      font-size: clamp(18px, 1.8vw, 27px);
+    }
+    @media (max-width: 760px) {
+      .page { width: 100%; margin: 0; }
+      .slide {
+        width: 100%;
+        min-height: 100svh;
+        aspect-ratio: auto;
+        border: 0;
+        box-shadow: none;
+        margin: 0 0 18px;
+        padding: 28px 18px 58px;
+      }
+      .footer { left: 18px; right: 18px; bottom: 16px; }
+      .cover { min-height: 100svh; }
+      .cover-text, .cover-list, .chevrons, .cover-note { position: relative; inset: auto; width: auto; }
+      .cover-text { padding: 50px 24px 0; }
+      .cover .core { margin-top: 2rem; }
+      .chevrons { margin: 28px 24px 0; }
+      .cover-list { margin: 28px 24px 0; }
+      .flow, .principles, .filters, .structure-grid, .blocks, .qa-grid {
+        grid-template-columns: 1fr;
+      }
+      .principle, .principle:nth-child(-n+3), .principle:nth-child(n+4) { grid-column: auto; }
+      .flow-step:not(:last-child)::after, .chain-item:not(:last-child) .hex::after { display: none; }
+      .strategy, .sentence, .matrix, .mini-timeline, .focus-line, .bottom-line {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        top: auto;
+        margin-top: 28px;
+      }
+      .strategy, .sentence { grid-template-columns: 1fr; }
+      .mini-timeline { border-top: 0; display: grid; gap: 12px; }
+      .mini-timeline div { padding: 0 0 0 40px; text-align: left; }
+      .mini-timeline div::before { left: 15px; top: 0; transform: none; }
+      .table-row, .check-row { grid-template-columns: 1fr; }
+      .brace-note, .axis-left, .axis-right { display: none; }
+      .matrix { display: grid; grid-template-columns: 1fr; }
+      .matrix::before, .matrix::after { display: none; }
+      .chain { grid-template-columns: 1fr; }
+      .hex { width: 120px; height: 100px; }
+      .block-card { grid-template-columns: 48px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="slide cover">
+      <div class="chevrons"><span class="chev"></span><span class="chev"></span><span class="chev"></span></div>
+      <div class="cover-text">
+        <h1>第二階段
+備審準備作戰圖</h1>
+        <p class="support">從學系要求、檔案勾選、學習歷程自述到多元表現綜整心得</p>
+        <p class="core">核心句：不是把資料堆滿，而是用真實經歷證明「我為什麼適合這個學系」。</p>
+      </div>
+      <div class="cover-list">
+        <div>學系條件</div>
+        <div>能力證據</div>
+        <div>反思敘事</div>
+        <div>上傳檢核</div>
+      </div>
+      <div class="cover-note">視覺型簡報｜可編輯 PPTX</div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">一張圖看完整流程</h2>
+      <p class="slide-subtitle">準備第二階段審查資料時，先讀校系，再回頭挑檔案，最後用自述與心得串成證據鏈。</p>
+      <div class="rule"></div>
+      <div class="flow">
+        <div class="flow-step"><span class="circle" style="background:var(--teal)">1</span><div class="card"><h3>讀懂校系</h3><p>校系分則、準備指引、ColleGo!</p></div></div>
+        <div class="flow-step"><span class="circle" style="background:var(--blue)">2</span><div class="card"><h3>盤點素材</h3><p>修課、課程學習成果、多元表現</p></div></div>
+        <div class="flow-step"><span class="circle" style="background:var(--gold)">3</span><div class="card"><h3>挑選證據</h3><p>完整性、獨特性、與學系連結</p></div></div>
+        <div class="flow-step"><span class="circle" style="background:var(--coral)">4</span><div class="card"><h3>寫成故事</h3><p>動機、行動、成果、反思</p></div></div>
+        <div class="flow-step"><span class="circle" style="background:var(--green)">5</span><div class="card"><h3>上傳確認</h3><p>格式、期限、檔名、校系正確</p></div></div>
+      </div>
+      <div class="strategy"><strong>準備策略</strong><span>每一份資料都要回答：我做了什麼、為什麼做、從中學到什麼、如何連到申請學系。</span></div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>02</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">三重二不是底層規則</h2>
+      <p class="slide-subtitle">大學不是集點積分，而是看學生真實、自主、有脈絡的學習證據。</p>
+      <div class="rule"></div>
+      <div class="principles">
+        <div class="card principle" style="border-left-color:var(--teal)"><span class="pill" style="background:var(--teal2);color:var(--teal)">重視</span><h3>重視校內學習</h3><p>以高中課程、探究、實作、自主學習等長期累積為核心。</p></div>
+        <div class="card principle" style="border-left-color:var(--blue)"><span class="pill" style="background:var(--blue2);color:var(--blue)">重視</span><h3>重視真實自主</h3><p>資料要能被自己說清楚；避免過度包裝或他人代工。</p></div>
+        <div class="card principle" style="border-left-color:var(--green)"><span class="pill" style="background:var(--green2);color:var(--green)">重視</span><h3>重視反思歷程</h3><p>說明為何學、如何做、遇到什麼問題、能力如何成長。</p></div>
+        <div class="card principle" style="border-left-color:var(--gold)"><span class="pill" style="background:var(--gold2);color:var(--gold)">不</span><h3>不必樣樣具備</h3><p>校系列出的項次不等於每項都要有，重點是代表性。</p></div>
+        <div class="card principle" style="border-left-color:var(--coral)"><span class="pill" style="background:var(--coral2);color:var(--coral)">不</span><h3>不是以量取勝</h3><p>件數多不如關聯清楚；堆資料會稀釋亮點。</p></div>
+      </div>
+      <div class="focus-line">審查焦點從「我有多少東西」移到「我能否用證據說明自己的能力與適配」。</div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>03</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">勾選檔案：三個篩選器</h2>
+      <p class="slide-subtitle">先把高中三年的素材攤開，再用三個問題留下最有說服力的檔案。</p>
+      <div class="rule"></div>
+      <div class="filters">
+        <div class="card filter" style="color:var(--teal)"><div class="funnel"></div><h3>完整性</h3><p>作品是否有清楚脈絡、成果、製作動機與反思？</p></div>
+        <div class="card filter" style="color:var(--coral)"><div class="funnel"></div><h3>獨特性</h3><p>是否能代表我，而不是任何人都可以替換的活動紀錄？</p></div>
+        <div class="card filter" style="color:var(--blue)"><div class="funnel"></div><h3>連結性</h3><p>能否對應學系重視的能力、特質或學習方向？</p></div>
+      </div>
+      <div class="mini-timeline">
+        <div style="--dot:var(--teal)">列出素材</div>
+        <div style="--dot:var(--gold)">對照校系</div>
+        <div style="--dot:var(--coral)">排序挑選</div>
+        <div style="--dot:var(--blue)">百字說明</div>
+        <div style="--dot:var(--green)">確認上傳</div>
+      </div>
+      <div class="bottom-line">提醒：課程學習成果至多 3 件；多元表現至多 10 件，另需上傳綜整心得。</div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>04</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">審查資料不是同一種東西</h2>
+      <p class="slide-subtitle">五大項目各有功能；自述與心得負責把散落的證據串起來。</p>
+      <div class="rule"></div>
+      <div class="table-list">
+        <div class="table-row"><span class="pill" style="background:var(--teal2);color:var(--teal)">A</span><strong>修課紀錄</strong><span>看高中修課與學習趨勢</span></div>
+        <div class="table-row"><span class="pill" style="background:var(--blue2);color:var(--blue)">B-E</span><strong>課程學習成果</strong><span>書面報告、實作、自然/社會探究</span></div>
+        <div class="table-row"><span class="pill" style="background:var(--gold2);color:var(--gold)">F-N</span><strong>多元表現</strong><span>自主學習、社團、幹部、服務、競賽、證照等</span></div>
+        <div class="table-row"><span class="pill" style="background:var(--coral2);color:var(--coral)">O-Q</span><strong>學習歷程自述</strong><span>反思、就讀動機、未來規劃</span></div>
+        <div class="table-row"><span class="pill" style="background:var(--green2);color:var(--green)">R-T</span><strong>其他</strong><span>校系自訂要求</span></div>
+      </div>
+      <div class="brace-note">把經歷<br>說成證據</div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>05</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">自述寫作：把經歷變成故事</h2>
+      <p class="slide-subtitle">學習歷程反思是判斷適配性的關鍵；不是作文，而是用真實經驗建立說服力。</p>
+      <div class="rule"></div>
+      <div class="chain">
+        <div class="chain-item"><div class="hex" style="--hex:var(--teal)">動機</div><p>我為什麼開始？</p></div>
+        <div class="chain-item"><div class="hex" style="--hex:var(--blue)">行動</div><p>我做了哪些嘗試？</p></div>
+        <div class="chain-item"><div class="hex" style="--hex:var(--gold)">成果</div><p>留下什麼作品或證據？</p></div>
+        <div class="chain-item"><div class="hex" style="--hex:var(--coral)">反思</div><p>能力、特質、方向如何改變？</p></div>
+        <div class="chain-item"><div class="hex" style="--hex:var(--green)">適配</div><p>為何連到這個學系？</p></div>
+      </div>
+      <div class="sentence"><strong>自述核心句型</strong><span>「我在＿＿經歷中遇到＿＿問題，因此採取＿＿行動，最後學到＿＿能力，這讓我更確認與＿＿學系的連結。」</span></div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>06</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">素材四象限：該寫哪一種？</h2>
+      <p class="slide-subtitle">用「對自己的重要性」與「和學系的關聯性」決定素材處理方式。</p>
+      <div class="rule"></div>
+      <div class="axis-left">對自己重要</div>
+      <div class="axis-right">缺乏反思</div>
+      <div class="matrix">
+        <div class="quad" style="background:var(--teal2)"><div><h3 style="color:var(--teal)">首選素材</h3><p>重要且相關：深入寫，做成主線</p></div></div>
+        <div class="quad" style="background:var(--blue2)"><div><h3 style="color:var(--blue)">補強素材</h3><p>相關但反思少：補上動機與收穫</p></div></div>
+        <div class="quad" style="background:var(--gold2)"><div><h3 style="color:var(--gold)">可用素材</h3><p>深刻但關聯低：轉成核心素養證據</p></div></div>
+        <div class="quad" style="background:var(--coral2)"><div><h3 style="color:var(--coral)">暫緩素材</h3><p>不相關又缺反思：重新篩選或補寫</p></div></div>
+      </div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>07</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">自述的三種可讀結構</h2>
+      <p class="slide-subtitle">選一種最能說明自己的人，不需要追求花俏格式。</p>
+      <div class="rule"></div>
+      <div class="structure-grid">
+        <div class="card structure" style="color:var(--teal)"><h3>故事串連</h3><p>用小標題拆段
+呈現興趣如何萌芽、行動如何深化</p><div class="fake-lines"><span></span><span></span><span></span></div><div class="best">最適合：經歷有轉折</div></div>
+        <div class="card structure" style="color:var(--gold)"><h3>時間軸</h3><p>依高一、高二、高三
+展示探索到聚焦的過程</p><div class="fake-lines"><span></span><span></span><span></span></div><div class="best">最適合：成長脈絡清楚</div></div>
+        <div class="card structure" style="color:var(--blue)"><h3>能力分類</h3><p>依能力或學系特質
+把不同素材放入同一證據框</p><div class="fake-lines"><span></span><span></span><span></span></div><div class="best">最適合：素材很多元</div></div>
+      </div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>08</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">多元表現心得：一頁也要有主軸</h2>
+      <p class="slide-subtitle">至多 800 字、圖片至多 3 張；視覺化是幫讀者快速看懂，不是把文字塞進表格。</p>
+      <div class="rule"></div>
+      <div class="blocks">
+        <div class="card block-card" style="color:var(--teal)"><span class="circle" style="background:var(--teal)">1</span><div><h3>依指引回答</h3><p>先回應校系指定問題與格式，再談自己的亮點。</p></div></div>
+        <div class="card block-card" style="color:var(--blue)"><span class="circle" style="background:var(--blue)">2</span><div><h3>適度視覺化</h3><p>簡表、時間軸、樹狀圖、雷達圖、圖塊都可用。</p></div></div>
+        <div class="card block-card" style="color:var(--coral)"><span class="circle" style="background:var(--coral)">3</span><div><h3>言簡意賅</h3><p>刪掉口號，留下事件、能力、反思與學系連結。</p></div></div>
+        <div class="card block-card" style="color:var(--gold)"><span class="circle" style="background:var(--gold)">4</span><div><h3>系統呈現</h3><p>可用故事主軸，或按能力/領域分類。</p></div></div>
+      </div>
+      <div class="bottom-line">心得不是活動清單，而是「我透過這些活動養成了什麼，為何能支持我的申請」。</div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>09</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">常見疑問：把焦慮轉成處理策略</h2>
+      <p class="slide-subtitle">文件中的 Q&A 可以整理成幾個學生最常卡住的決策點。</p>
+      <div class="rule"></div>
+      <div class="qa-grid">
+        <div class="card qa"><span class="pill" style="background:var(--teal2);color:var(--teal)">Q1</span><h3>項次不全</h3><p>挑代表性作品，說清楚能力與熱忱</p></div>
+        <div class="card qa"><span class="pill" style="background:var(--blue2);color:var(--blue)">Q2</span><h3>轉換跑道</h3><p>說明轉向歷程，強調共通核心能力</p></div>
+        <div class="card qa"><span class="pill" style="background:var(--gold2);color:var(--gold)">Q3</span><h3>作品不相關</h3><p>補上反思與素養能力，不只看學科對應</p></div>
+        <div class="card qa"><span class="pill" style="background:var(--coral2);color:var(--coral)">Q4</span><h3>小組作品</h3><p>交代個人角色、分工、困難與收穫</p></div>
+        <div class="card qa"><span class="pill" style="background:var(--green2);color:var(--green)">Q5</span><h3>面試提問</h3><p>熟讀檔案，準備動機、過程、困難、反思</p></div>
+        <div class="card qa"><span class="pill" style="background:var(--blue2);color:var(--blue)">Q6</span><h3>資料真實</h3><p>引用註明來源，確保能說明自己做了什麼</p></div>
+      </div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>10</span></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">上傳前最後一輪檢核</h2>
+      <p class="slide-subtitle">最可惜的失誤通常不是內容，而是檔案、期限、格式、校系名稱。</p>
+      <div class="rule"></div>
+      <div class="check-list">
+        <div class="check-row"><span class="ok" style="background:var(--teal)">OK</span><strong style="color:var(--teal)">校系</strong><span>檔案內容、學校名稱、學系名稱是否正確？</span></div>
+        <div class="check-row"><span class="ok" style="background:var(--blue)">OK</span><strong style="color:var(--blue)">格式</strong><span>PDF、大小限制、字數/圖片限制是否符合？</span></div>
+        <div class="check-row"><span class="ok" style="background:var(--gold)">OK</span><strong style="color:var(--gold)">系統</strong><span>使用桌機或筆電，提前熟悉甄選會上傳流程。</span></div>
+        <div class="check-row"><span class="ok" style="background:var(--coral)">OK</span><strong style="color:var(--coral)">一致</strong><span>自述、心得、勾選檔案能否彼此呼應？</span></div>
+        <div class="check-row"><span class="ok" style="background:var(--green)">OK</span><strong style="color:var(--green)">面試</strong><span>每件作品的動機、分工、困難、反思都能說清楚？</span></div>
+      </div>
+      <div class="bottom-line" style="color:var(--coral)">檢核原則：教授可能會從資料問到面試；所有內容都要真實、可追問、可自我說明。</div>
+      <div class="footer"><span>依據《學習歷程：大學申請入學第二階段準備指南》整理</span><span>11</span></div>
+    </section>
+
+    <section class="slide dark">
+      <div class="gold-rule"></div>
+      <h2>最後記住</h2>
+      <p class="big">好的備審資料，不是最滿的資料夾，
+而是最清楚的證據鏈。</p>
+      <ul>
+        <li style="--dot:var(--teal)">先理解學系期待，再挑選素材。</li>
+        <li style="--dot:var(--coral)">用真實經歷說明能力，不用口號代替證據。</li>
+        <li style="--dot:var(--gold)">自述與心得要負責串連、反思、證明適配。</li>
+      </ul>
+      <div class="end-mark">完</div>
+    </section>
+  </main>
+</body>
+</html>
